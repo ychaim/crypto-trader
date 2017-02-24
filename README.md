@@ -1,23 +1,13 @@
-# landview
+# Example Node Applocation
 
 Information here
 
 ##Installation
 
-Clone this repo
+Clone this repo and run server.js
 
 ``` 
 npm install
 ```
 
-## Running
-After completing above installation instructions, to run locally without Basic Authentication:
-
-``` 
-DEBUG=sprintrunner:*
-```
-
-If you want to try out the stunning Basic Auth (useful for when you don't want everyone getting straight to your story overviews)
-``` 
-DEBUG=landview:*  npm start
-```
+This is a template NodeJS application configured to use Basic Auth (if you set the environment variables) with Handlebars for templating.
