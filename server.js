@@ -81,15 +81,16 @@ var ExampleApp = function () {
 
     // Setup Express
     self.app = express();
-    self.app.engine('handlebars',
+    self.app.engine('hbs',
       exphbs({
         helpers: {
           dateFormat: hdf
         },
-        defaultLayout: 'main'
+        defaultLayout: 'main',
+        extname: '.hbs'
       }));
 
-    self.app.set('view engine', 'handlebars');
+    self.app.set('view engine', 'hbs');
 
 
     var cookie_key = process.env.COOKIE_KEY || 'aninsecurecookiekey';
