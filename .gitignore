@@ -1,1 +1,2 @@
-# Created by .ignore support plugin (hsz.mobi)
+# Don't upload the real environment variables to github ;)
+/process.env
