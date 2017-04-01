@@ -21,7 +21,7 @@ DBHelper.query = function (sql, parameters, done, error) {
         pg.defaults.ssl = true;
     }
 
-    pg.defaults.poolSize=50;
+    pg.defaults.poolSize = 50;
 
     console.log(process.env.DATABASE_URL);
     pg.connect(process.env.DATABASE_URL, function (err, client) {
@@ -35,7 +35,7 @@ DBHelper.query = function (sql, parameters, done, error) {
             error(err);
             return;
         }
-        
+
         var query = client.query(sql, parameters);
 
         query.on('row', function (row) {
@@ -99,7 +99,7 @@ DBHelper.deleteByIds = function (tableName, ids, done) {
     }
 
     var sql = "DELETE FROM " + tableName + " WHERE id IN (" + params.join(',') + "  )";
-    
+
     DBHelper.query(sql, ids,
         function (result) {
             done(true);
@@ -108,28 +108,26 @@ DBHelper.deleteByIds = function (tableName, ids, done) {
             console.log(error);
             done(false, error);
         });
-    
+
 }
 
-DBHelper.getAllFromTable = function( tableName , done , order ) {
+DBHelper.getAllFromTable = function (tableName, done, order) {
     var sql = "SELECT * FROM " + tableName;
     var params = [];
 
-    if( order != null) {
+    if (order != null) {
         sql = sql + " ORDER BY $1";
         params.push(order);
     }
 
-
     DBHelper.query(sql, params,
         function (results) {
-            done( results);
+            done(results);
         },
         function (error) {
             console.log(error);
-            done( null );
+            done(null);
         });
 }
-
 
 module.exports = DBHelper;

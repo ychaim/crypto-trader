@@ -1,11 +1,11 @@
 /**
  * This is a stand-alone application that inserts base data into the database
- * 
+ *
  * It assumes that the database has already been dreated
  */
 
 // Load in the environment variables
-require('dotenv').config({path:'process.env'});
+require('dotenv').config({ path: 'process.env' });
 
 var pg = require('pg');
 var async = require('async');
@@ -15,7 +15,7 @@ client.connect();
 
 var statements = [];
 
-function doQuery(item, callback) {
+function doQuery (item, callback) {
     console.log("Query:" + item);
     client.query(item, function (err, result) {
         callback(err);
