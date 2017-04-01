@@ -1,5 +1,5 @@
 {
-  "extends": ["eslint:recommended", "google"],
+  "extends": ["node"],
   "rules": {
     // Additional, per-project rules...
   }
