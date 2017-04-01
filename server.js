@@ -1,4 +1,4 @@
-"use strict"
+'use strict';
 
 require('dotenv').config({ path: 'process.env' });
 
@@ -13,16 +13,15 @@ require('./utils/handlerbarsHelpers');
 
 var path = require('path');
 var favicon = require('serve-favicon');
-var logger = require('morgan');
+var morgan = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var session = require('express-session');
 var express_enforces_ssl = require('express-enforces-ssl');
 
-var basicAuth = require('./utils/basicAuth.js');
-
-var routes = require('./routes/index');
+const basicAuth = require('./utils/basicAuth.js');
+const routes = require('./routes/index');
 
 var helmet = require('helmet');
 
@@ -48,7 +47,7 @@ var ExampleApp = function () {
      *  @param {string} sig  Signal to terminate on.
      */
     self.terminator = function (sig) {
-        if (typeof sig === "string") {
+        if (typeof sig === 'string') {
             debug('%s: Received %s - terminating Application ...',
                 Date(Date.now()), sig);
             process.exit(1);
@@ -85,6 +84,9 @@ var ExampleApp = function () {
 
         // Setup Express
         self.app = express();
+        self.app.use(morgan('tiny'));
+        self.app.use(helmet());
+
         self.app.engine('hbs',
             exphbs({
                 helpers: {
@@ -96,11 +98,9 @@ var ExampleApp = function () {
 
         self.app.set('view engine', 'hbs');
 
-
         // Setup the Google Analytics ID if defined
         self.app.locals.google_id = process.env.GOOGLE_ID || undefined;
-        debug("GA ID: %s", self.app.locals.google_id);
-
+        debug('GA ID: %s', self.app.locals.google_id);
 
         var cookie_key = process.env.COOKIE_KEY || 'aninsecurecookiekey';
         var sess = {
@@ -110,7 +110,7 @@ var ExampleApp = function () {
 
         if (self.app.get('env') == 'production') {
             self.app.enable('trust proxy', 1); // trusts first proxy - Heroku load balancer
-            debug("In production mode");
+            debug('In production mode');
             self.app.use(express_enforces_ssl());
             sess.cookie.secure = true;
         }
@@ -139,7 +139,7 @@ var ExampleApp = function () {
         // development error handler
         // will print stacktrace
         if (self.app.get('env') === 'development') {
-            debug("In development mode");
+            debug('In development mode');
             self.app.use(function (err, req, res, next) {
                 res.status(err.status || 500);
                 res.render('error', {
@@ -160,7 +160,7 @@ var ExampleApp = function () {
         self.app.use(function (req, res, next) {
             // the status option, or res.statusCode = 404
             // are equivalent, however with the option we
-            // get the "status" local available as well
+            // get the 'status' local available as well
             res.render('404', { status: 404, url: req.url });
         });
 
