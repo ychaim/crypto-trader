@@ -28,7 +28,7 @@ var helmet = require('helmet');
 /**
  * Set API Key based on Environment variable
  **/
-var BeerShotApp = function () {
+var ExampleApp = function () {
     var self = this;
 
     /**
@@ -192,6 +192,6 @@ var BeerShotApp = function () {
 /**
  *  main():  Main code.
  */
-var exampleNodeApp = new BeerShotApp();
+var exampleNodeApp = new ExampleApp();
 exampleNodeApp.initialize();
 exampleNodeApp.start();
