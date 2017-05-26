@@ -2,7 +2,7 @@
 
 require('dotenv').config({ path: 'process.env' });
 
-var debug = require('debug')('testapp:server');
+var debug = require('debug')('beershot:server');
 var http = require('http');
 
 var express = require('express');
@@ -28,7 +28,7 @@ var helmet = require('helmet');
 /**
  * Set API Key based on Environment variable
  **/
-var ExampleApp = function () {
+var BeerShotApp = function () {
     var self = this;
 
     /**
@@ -97,6 +97,17 @@ var ExampleApp = function () {
             }));
 
         self.app.set('view engine', 'hbs');
+
+        // Lets encrypt response
+        var letsEncryptUrl = process.env.LETS_ENCRYPT;
+        var letsEncryptResponse = process.env.LETS_ENCRYPT_RESPONSE;
+
+        if( letsEncryptResponse != undefined && letsEncryptResponse != undefined) {
+            self.app.get('/.well-known/acme-challenge/' + letsEncryptUrl, function (req, res) {
+                res.send(letsEncryptResponse);
+                res.end();
+            });
+        }
 
         // Setup the Google Analytics ID if defined
         self.app.locals.google_id = process.env.GOOGLE_ID || undefined;
@@ -181,6 +192,6 @@ var ExampleApp = function () {
 /**
  *  main():  Main code.
  */
-var exampleNodeApp = new ExampleApp();
+var exampleNodeApp = new BeerShotApp();
 exampleNodeApp.initialize();
 exampleNodeApp.start();

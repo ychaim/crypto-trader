@@ -1,7 +1,6 @@
-# Example Node Applocation
+# Beer Shot Application
 
-
-This is a template NodeJS application configured to use Basic Auth (if you set the environment variables) with Handlebars for templating.
+Application to record photos of beer shots/pubs
 
 ##Installation
 
