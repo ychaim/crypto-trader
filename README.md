@@ -1,6 +1,4 @@
-# Beer Shot Application
-
-Application to record photos of beer shots/pubs
+# Example NodeJS application
 
 ##Installation
 

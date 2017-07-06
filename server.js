@@ -2,34 +2,34 @@
 
 require('dotenv').config({ path: 'process.env' });
 
-var debug = require('debug')('beershot:server');
-var http = require('http');
+const debug = require('debug')('example:server');
+const http = require('http');
 
-var express = require('express');
+const express = require('express');
 require('handlebars');
-var exphbs = require('express-handlebars');
-var hdf = require('handlebars-dateformat');
+const exphbs = require('express-handlebars');
+const hdf = require('handlebars-dateformat');
 require('./utils/handlerbarsHelpers');
 
-var path = require('path');
-var favicon = require('serve-favicon');
-var morgan = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+const path = require('path');
+const favicon = require('serve-favicon');
+const morgan = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
 
-var session = require('express-session');
-var express_enforces_ssl = require('express-enforces-ssl');
+const session = require('express-session');
+const express_enforces_ssl = require('express-enforces-ssl');
 
 const basicAuth = require('./utils/basicAuth.js');
 const routes = require('./routes/index');
 
-var helmet = require('helmet');
+const helmet = require('helmet');
 
 /**
- * Set API Key based on Environment variable
+ * Example application
  **/
-var ExampleApp = function () {
-    var self = this;
+const ExampleApp = function () {
+    const self = this;
 
     /**
      *  Set up server IP address and port # using env variables/defaults.
@@ -99,8 +99,8 @@ var ExampleApp = function () {
         self.app.set('view engine', 'hbs');
 
         // Lets encrypt response
-        var letsEncryptUrl = process.env.LETS_ENCRYPT;
-        var letsEncryptResponse = process.env.LETS_ENCRYPT_RESPONSE;
+        const letsEncryptUrl = process.env.LETS_ENCRYPT;
+        const letsEncryptResponse = process.env.LETS_ENCRYPT_RESPONSE;
 
         if( letsEncryptResponse != undefined && letsEncryptResponse != undefined) {
             self.app.get('/.well-known/acme-challenge/' + letsEncryptUrl, function (req, res) {
@@ -113,8 +113,8 @@ var ExampleApp = function () {
         self.app.locals.google_id = process.env.GOOGLE_ID || undefined;
         debug('GA ID: %s', self.app.locals.google_id);
 
-        var cookie_key = process.env.COOKIE_KEY || 'aninsecurecookiekey';
-        var sess = {
+        const cookie_key = process.env.COOKIE_KEY || 'aninsecurecookiekey';
+        const sess = {
             secret: cookie_key,
             cookie: {}
         }
@@ -128,10 +128,10 @@ var ExampleApp = function () {
 
         self.app.use(session(sess));
 
-        var useAuth = process.env.USE_AUTH || 'false'
+        const useAuth = process.env.USE_AUTH || 'false'
         if (useAuth === 'true') {
-            var username = process.env.USERNAME
-            var password = process.env.PASSWORD
+            const username = process.env.USERNAME
+            const password = process.env.PASSWORD
             self.app.use(basicAuth.basicAuth(username, password))
         }
 
