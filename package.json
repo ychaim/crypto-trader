@@ -20,6 +20,9 @@
     "helmet": "latest",
     "morgan": "latest",
     "sanitize-html": "latest",
-    "serve-favicon": "latest"
+    "serve-favicon": "latest",
+    "passport": "latest",
+    "passport-local": "latest",
+    "dotenv": "latest"
   }
 }
