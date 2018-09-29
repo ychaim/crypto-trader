@@ -2,7 +2,7 @@
 
 ##Installation
 
-Clone this repo and run server.js
+Clone this repo and run app.js
 
 ``` 
 npm install
