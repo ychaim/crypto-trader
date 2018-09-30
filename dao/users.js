@@ -1,7 +1,7 @@
 const debug = require('debug')('example:users');
 const User = require('../models/User');
 
-const default_user  = process.env.DEFAULT_USER || 'admin';
+const default_user  = process.env.DEFAULT_USERNAME || 'admin';
 const default_password = process.env.DEFAULT_PASSWORD || 'password';
 
 // Create an example user
@@ -34,7 +34,7 @@ Users.findById = function(id, done) {
  * @param done Function to call with the result
  */
 Users.findByUsername = function(username, done) {
-    if( username === 'user') {
+    if( username === default_user) {
         done(null , exampleUser);
     } else {
         return done( null , null );
