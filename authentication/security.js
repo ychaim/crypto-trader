@@ -17,7 +17,7 @@ Security.isAuthenticated = function (req, res, next) {
         return next();
     } else {
         req.session.redirect_to = req.url;
-        res.redirect('/login');
+        res.redirect('/auth/login');
     }
 }
 
@@ -32,7 +32,7 @@ Security.isAuthenticatedAdmin = function (req, res, next) {
     }
 
     req.session.redirect_to = req.url;
-    res.redirect('/login');
+    res.redirect('/auth/login');
 }
 
 

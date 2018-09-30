@@ -1,8 +1,12 @@
 const debug = require('debug')('example:users');
 const User = require('../models/User');
 
-let examplePassword = require('crypto').createHash('sha256').update('password').digest('base64');
-let exampleUser = new User(1, 'user', 'The only user', examplePassword, 'admin', true );
+const default_user  = process.env.DEFAULT_USER || 'admin';
+const default_password = process.env.DEFAULT_PASSWORD || 'password';
+
+// Create an example user
+let examplePassword = require('crypto').createHash('sha256').update(default_password).digest('base64');
+let exampleUser = new User(1, default_user, 'The only user', examplePassword, 'admin', true );
 
 // This is an example implementation - you would normally store users in the DB
 const Users = function () {
@@ -22,7 +26,6 @@ Users.findById = function(id, done) {
         done( { message : "No such user" } );
     }
 };
-
 
 
 /**

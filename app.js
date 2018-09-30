@@ -13,16 +13,17 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const exphbs  = require('express-handlebars');
 const security = require('./authentication/security');
-
 const helpers = require('./lib/handlebarsHelpers')
+
+
+// Routes
 const index = require('./routes/index');
+const authentication = require('./routes/authentication');
 
 const app = express();
 
-
-debug( "path:%s", __dirname);
+// Setup Express and Handlebars
 app.set('views', path.join(__dirname, 'views'));
-
 app.engine('.hbs',
     exphbs(
         {
@@ -32,9 +33,9 @@ app.engine('.hbs',
             helpers: helpers,
             extname: '.hbs'
         }));
-
 app.set('view engine', '.hbs');
 
+// Setup cookies
 const cookie_key = process.env.COOKIE_KEY || 'aninsecurecookiekey';
 const cookie_name = process.env.COOKIE_NAME || 'my_cookie';
 const sess = {
@@ -60,35 +61,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-// Setup the passport routes
-app.get('/login', function (req, res) {
-    if (req.isAuthenticated()) {
-        debug("Already authenticated")
-        res.redirect('/');
-    } else {
-        debug("Rendering login");
-        res.render('login');
-    }
-});
-
-app.post('/login', passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/login',
-    failureFlash: false
-}));
-
-
-// Setup the routes
-app.use('/', security.isAuthenticated,  function (req, res) {
-    let url = req.session.redirect_to;
-    if (url != undefined) {
-        delete req.session.redirect_to;
-        res.redirect(url);
-    }
-    else {
-        res.render('index');
-    }
-});
+// Define the routes
+app.use('/', index);
+app.use('/auth', authentication);
 
 
 // catch 404 and forward to error handler
@@ -108,7 +83,6 @@ app.use(function (err, req, res, next) {
     res.status(err.status || 500);
     res.render('error');
 });
-
 
 
 module.exports = app;
