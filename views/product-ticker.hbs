@@ -1,0 +1,37 @@
+<h1 xmlns="http://www.w3.org/1999/html">{{title}}</h1>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <table class="table table-striped">
+
+                <thead>
+                <tr>
+                    <th>Trade ID</th>
+                    <th>Price</th>
+                    <th>Size</th>
+                    <th>Best bid</th>
+                    <th>Best ask</th>
+                    <th>24Hr volume</th>
+                    <th>Time</th>
+                </tr>
+                </thead>
+                <tbody>
+
+
+                    <tr>
+                        <td>{{data.trade_id}}</td>
+                        <td>{{data.price}}</td>
+                        <td>{{data.size}}</td>
+                        <td>{{data.bid}}</td>
+                        <td>{{data.ask}}</td>
+                        <td>{{data.volume}}</td>
+                        <td>{{parse_zulu data.time}}</td>
+                    </tr>
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

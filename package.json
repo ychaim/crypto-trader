@@ -23,6 +23,7 @@
     "serve-favicon": "latest",
     "passport": "latest",
     "passport-local": "latest",
-    "dotenv": "latest"
+    "dotenv": "latest",
+    "request": "latest"
   }
 }

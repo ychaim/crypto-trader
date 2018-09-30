@@ -19,6 +19,8 @@ const helpers = require('./lib/handlebarsHelpers')
 // Routes
 const index = require('./routes/index');
 const authentication = require('./routes/authentication');
+const users = require('./routes/users');
+const coinbase = require('../crypto-trader2/routes/coinbase_pro');
 
 const app = express();
 
@@ -64,6 +66,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Define the routes
 app.use('/', index);
 app.use('/auth', authentication);
+app.use('/users', users);
+app.use('/coinbase', coinbase);
 
 
 // catch 404 and forward to error handler

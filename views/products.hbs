@@ -1,0 +1,42 @@
+
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-sm-12">
+            <h1 xmlns="http://www.w3.org/1999/html">{{title}}</h1>
+            <table class="table table-striped">
+
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Min - Max Size</th>
+                    <th>Status</th>
+                    <th>Min - Max Market Funds</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {{#each data}}
+                    <tr>
+                        <td><a href="/coinbase/history/{{this.id}}">{{this.display_name}}</a></td>
+                        <td>{{this.base_min_size}} - {{this.base_max_size}}</td>
+                        <td>{{this.status}}</td>
+                        <td>{{this.min_market_funds}} - {{this.max_market_funds}}</td>
+                        <td>
+                            <a href="/coinbase/product-ticker/{{this.id}}" class="btn btn-primary btn-sm" role="button">Ticker</a>
+                            <a href="/coinbase/history/{{this.id}}" class="btn btn-primary btn-sm" role="button">History</a>
+                            <a href="/coinbase/fills/{{this.id}}" class="btn btn-primary btn-sm" role="button">Fills</a>
+                            <a href="/coinbase/orders/{{this.id}}" class="btn btn-primary btn-sm" role="button">My Orders</a>
+                            <a href="/coinbase/trades/{{this.id}}" class="btn btn-primary btn-sm" role="button">Trades</a> |
+                            <a href="/coinbase/product-order-book/{{this.id}}" class="btn btn-primary btn-sm" role="button">Order book</a>
+                        </td>
+                    </tr>
+                {{/each}}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

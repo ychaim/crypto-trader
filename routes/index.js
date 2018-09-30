@@ -11,7 +11,7 @@ router.get('/', security.isAuthenticated,  function (req, res) {
         res.redirect(url);
     }
     else {
-        res.render('index');
+        res.render('index', { title: 'Crypto Trader'});
     }
 });
 

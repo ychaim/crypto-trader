@@ -7,7 +7,7 @@
 }
 
 .main-cover {
-    background: url('/images/background.jpg') no-repeat center center fixed;
+    background: url('/images/background.png') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -23,7 +23,7 @@
     width: 420px;
     padding: 20px 20px 20px;
     background-color: lightgrey;
-    background-color: rgba(211,211,211,0.5);
+    background-color: rgba(211,211,211,0.75);
     border: 3px solid rgba(0,0,0,0.1);
     border-radius: 10px;
 }

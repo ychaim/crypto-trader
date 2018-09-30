@@ -1,0 +1,42 @@
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1 xmlns="http://www.w3.org/1999/html">{{title}}</h1>
+
+            <table class="table table-striped">
+
+                <thead>
+                <tr>
+                    <!--<th>Order ID</th>-->
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Size</th>
+                    <th>Liquidity</th>
+                    <th>Fee</th>
+                    <th>Settled</th>
+                    <th>Side</th>
+                    <th>Created</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {{#each data}}
+                    <tr>
+                        <!--<td>{{this.order_id}}</td>-->
+                        <td>{{this.product_id}}</td>
+                        <td>{{this.price}}</td>
+                        <td>{{this.size}}</td>
+                        <td>{{this.liquidity}}</td>
+                        <td>{{this.fee}}</td>
+                        <td>{{this.settled}}</td>
+                        <td>{{this.side}}</td>
+                        <td>{{parse_zulu this.created_at}}</td>
+                    </tr>
+                {{/each}}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

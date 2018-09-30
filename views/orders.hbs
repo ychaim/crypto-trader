@@ -1,0 +1,48 @@
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1 xmlns="http://www.w3.org/1999/html">{{title}}</h1>
+
+            <table class="table table-striped">
+
+                <thead>
+                <tr>
+                    <th>Side</th>
+                    <th>Market</th>
+                    <th>Type</th>
+                    <th>Size</th>
+                    <th>Filled</th>
+                    <th>Filled Price</th>
+                    <th>Fee</th>
+                    <th>Reason</th>
+                    <th>Created</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {{#each data}}
+                    <tr>
+                        <td class="{{{side}}}">{{side}}</td>
+                        <td>{{product_id}}</td>
+                        <td>{{type}}</td>
+
+                        {{#if specified_funds}}
+                            <td class="{{{extract_market product_id 2}}}">{{#if specified_funds}}{{to_fixed specified_funds 2}}{{/if}}</td>
+                        {{else}}
+                            <td class="{{{extract_market product_id 1}}}">{{filled_size}}</td>
+                        {{/if}}
+                        <td class="{{{extract_market product_id 1}}}">{{filled_size}}</td>
+
+                        <td class="{{{extract_market product_id 2}}}">{{#if price}}{{to_fixed price 2}}{{/if}}</td>
+                        <td class="{{{extract_market product_id 2}}}">{{to_fixed fill_fees 2}}</td>
+                        <td>{{done_reason}}</td>
+                        <td>{{parse_zulu created_at}}</td>
+                    </tr>
+                {{/each}}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

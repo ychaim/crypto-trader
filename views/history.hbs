@@ -1,0 +1,36 @@
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1 xmlns="http://www.w3.org/1999/html">{{title}}</h1>
+
+            <table class="table table-striped">
+
+                <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>Low</th>
+                    <th>High</th>
+                    <th>Open</th>
+                    <th>Close</th>
+                    <th>Volume</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {{#each data}}
+                    <tr>
+                        <td>{{parse_time this.[0]}}</td>
+                        <td>{{this.[1]}}</td>
+                        <td>{{this.[2]}}</td>
+                        <td>{{this.[3]}}</td>
+                        <td>{{this.[4]}}</td>
+                        <td>{{this.[5]}}</td>
+                    </tr>
+                {{/each}}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
